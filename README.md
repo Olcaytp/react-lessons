@@ -2,7 +2,8 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" alt="React Logo" width="50">
 
-This repository contains the code and materials for the React Basics Tutorial series that I have been following on YouTube. In this series, React fundamentals are explained in the simplest way possible, making it suitable for beginners.
+This repository contains the code and materials for the [React Basics Tutorial series](https://www.youtube.com/watch?v=tk9yS0qH03w&list=PLv1CRNciwsrdOObUDx7r9HOjqPxywbrXe&index=1&pp=iAQB) 
+that I have been following on YouTube. In this series, React fundamentals are explained in the simplest way possible, making it suitable for beginners.
 
 ## Table of Contents
 
@@ -12,7 +13,8 @@ This repository contains the code and materials for the React Basics Tutorial se
 
 ## Introduction
 
-React is a popular JavaScript library for building user interfaces. This tutorial series focuses on teaching the core concepts of React in a beginner-friendly manner. Whether you are new to web development or want to learn React from scratch, this series is a great place to start.
+React is a popular JavaScript library for building user interfaces. This tutorial series focuses on teaching the core concepts of React in a beginner-friendly manner. 
+Whether you are new to web development or want to learn React from scratch, this series is a great place to start.
 
 ## Getting Started
 
@@ -42,4 +44,5 @@ State management with Redux (optional)
 Feel free to explore the code and materials for each tutorial in the respective folders.
 
 Usage
-You can use this repository as a reference while following the YouTube tutorial series. Additionally, you can contribute to this project by improving code examples, fixing issues, or adding new features.
+You can use this repository as a reference while following the YouTube tutorial series. Additionally,
+you can contribute to this project by improving code examples, fixing issues, or adding new features.
