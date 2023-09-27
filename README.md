@@ -1,6 +1,6 @@
 # React Basics Tutorial
 
-![React Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png=50x)
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" alt="React Logo" width="50">
 
 This repository contains the code and materials for the React Basics Tutorial series that I have been following on YouTube. In this series, React fundamentals are explained in the simplest way possible, making it suitable for beginners.
 
