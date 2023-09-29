@@ -11,6 +11,14 @@ that I have been following on YouTube. In this series, React fundamentals are ex
 - [Getting Started](#getting-started)
 - [Contents](#contents)
 
+## Images
+
+<img
+  src="src\img\lesson16.jpg"
+  alt="covid-19 App"
+  title="Optional title"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
+
 ## Introduction
 
 React is a popular JavaScript library for building user interfaces. This tutorial series focuses on teaching the core concepts of React in a beginner-friendly manner. 
