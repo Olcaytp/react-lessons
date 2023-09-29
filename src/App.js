@@ -111,6 +111,31 @@ import './App.css';
 
 //-------------------------------------------------------------lesson 13
 
+// import React from 'react'
+
+// function App() {
+//   const [timer, setTimer] = React.useState(5);
+
+//     React.useEffect(() => {
+//       if(timer !== 0){
+//         const interval = setInterval(() => {
+//           setTimer(timer - 1);
+//         }, 1000);
+
+//       return () => clearInterval(interval);
+//       }
+//     }, [timer]);
+
+//     return (
+//       <div className='App'>
+//         <div style={{height:'250px', width:'250px', backgroundColor:'blue', borderRadius:'30%',
+//       color:'white', fontSize:'60px', margin:'10px auto', lineHeight:'250px'}}>{timer}</div>
+//       </div>
+//     )
+// }
+
+//-------------------------------------------------------------lesson 14
+
 import React from 'react'
 
 function App() {
@@ -122,8 +147,4 @@ function App() {
 }
 
 
-
-
-
 export default App;
-
