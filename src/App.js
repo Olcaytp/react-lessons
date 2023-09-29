@@ -136,15 +136,70 @@ import './App.css';
 
 //-------------------------------------------------------------lesson 14
 
+// import React, {useRef} from 'react'
+
+// function App() {
+
+//   const [color, setColor] = React.useState('red');
+//   const colorChange = useRef(null);
+
+//   function change(){
+//     document.body.style.backgroundColor = colorChange.current.value;
+//     console.log(colorChange.current.className);
+//     setColor(() => colorChange.current.value);
+//   }
+
+//   return (
+//     <div className='App'>
+//       <p>Write some text to input</p>    
+//       <input type='text' ref={colorChange} onChange={change} className='color-change'/>
+//       <p>{color}</p>
+//     </div>
+//   )
+// }
+
+//-------------------------------------------------------------lesson 15
+
+// import React, {useEffect, useState} from 'react'
+// import axios from 'axios';
+
+// function App() {
+
+//   const [data, setData] = useState('');
+//   const [id, setId] = useState(1);
+
+//   useEffect(() => {
+//     axios.get('https://jsonplaceholder.typicode.com/posts')
+//         .then(res => setData(res.data[id].title))
+//         .catch(err => console.log(err))
+//         // .then((response) => {
+//         //   console.log(response.data[0].title);
+//         // })
+//       }, [data, id]);
+
+//   return (
+//   <div className='App'>
+//     <p>{data}</p>
+//     <input type='text' value={id} onChange={e => setId(e.target.value)} />
+//     </div>
+//     )
+// }
+
+//-------------------------------------------------------------lesson 16
+
 import React from 'react'
 
 function App() {
+
+  
   return (
     <div>
       
     </div>
   )
 }
+
+
 
 
 export default App;
