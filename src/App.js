@@ -187,52 +187,103 @@ import './App.css';
 
 //-------------------------------------------------------------lesson 16
 
-import React, {useEffect, useState} from 'react';
+// import React, {useEffect, useState} from 'react';
+// import axios from 'axios';
+
+// function App() {
+//   const [data, setData] = useState();
+//   const [date, setDate] = useState();
+
+//   useEffect(() => {
+//     axios.get("https://raw.githubusercontent.com/ozanerturk/covid19-turkey-api/master/dataset/timeline.json")
+//     .then(res => setData(res.data[date]))
+//     .catch(err => console.log(err))
+//   }, [data,date])
+
+//   return (
+//     <div className="App">
+//       <div className="container">
+//         <div className="row">
+//           <div className="col-md-8 mx-auto mt-4">
+//             <h4 className="text-center text-white display-3">TURKEY COVID-19 SEARCH ENGINE</h4>
+//             <input type="text" placeholder="GG/AA/YY" className="form-control" onChange={(e) => setDate(e.target.value)}/>
+//             <table className="table table-striped text-white">
+//               <thead>
+//                 <tr>
+//                 <th scope="col">#</th>
+//                 <th scope="col">Number Of Tests</th>
+//                 <th scope="col">Number Of Patients</th>
+//                 <th scope="col">Number Of Deaths</th>
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 <tr className={data === undefined ? "bg-danger" : "bg-success"}>
+//                 <th scope="row"> {data === undefined ? "waiting for data" : data.date} </th>
+//                 <td className="text-white" > {data === undefined ? "waiting for data" : data.totalTests} </td>
+//                 <td className="text-white" > {data === undefined ? "waiting for data" : data.patients} </td>
+//                 <td className="text-white" > {data === undefined ? "waiting for data" : data.deaths} </td>
+//                 </tr>
+//               </tbody>
+//             </table>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+//-------------------------------------------------------------lesson 17
+//npm use-position is used for taking browsers longitude and latitude
+
+import React, {useState, useEffect} from 'react'
 import axios from 'axios';
+import { usePosition } from 'use-position';
+
 
 function App() {
-  const [data, setData] = useState();
-  const [date, setDate] = useState();
+
+  const[weather, setWeather] = useState([]);
+  const { latitude, longitude } = usePosition();
+  // console.log(latitude, longitude);
+
+  const getWeatherData = async (lat, lon) => {
+    const key = process.env.REACT_APP_WEATHER_DATA;
+    // console.log(key);
+    const lang = navigator.language.split('-')[0];
+    // console.log(lang);
+
+    try{
+      // const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&lang=${lang}`);
+      const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`);
+      console.log(data);
+      setWeather(data);
+    }
+    catch(error){
+      console.log(error);
+      alert('Something went wrong');
+    }
+  }
+
 
   useEffect(() => {
-    axios.get("https://raw.githubusercontent.com/ozanerturk/covid19-turkey-api/master/dataset/timeline.json")
-    .then(res => setData(res.data[date]))
-    .catch(err => console.log(err))
-  }, [data,date])
+    latitude && longitude && getWeatherData(latitude, longitude);
+  },[latitude, longitude])
 
   return (
-    <div className="App">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 mx-auto mt-4">
-            <h4 className="text-center text-white display-3">TURKEY COVID-19 SEARCH ENGINE</h4>
-            <input type="text" placeholder="GG/AA/YY" className="form-control" onChange={(e) => setDate(e.target.value)}/>
-            <table className="table table-striped text-white">
-              <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">Number Of Tests</th>
-                <th scope="col">Number Of Patients</th>
-                <th scope="col">Number Of Deaths</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className={data === undefined ? "bg-danger" : "bg-success"}>
-                <th scope="row"> {data === undefined ? "waiting for data" : data.date} </th>
-                <td className="text-white" > {data === undefined ? "waiting for data" : data.totalTests} </td>
-                <td className="text-white" > {data === undefined ? "waiting for data" : data.patients} </td>
-                <td className="text-white" > {data === undefined ? "waiting for data" : data.deaths} </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+    <div className='App' style={{color:'yellowgreen', backgroundColor:'teal'}} >
+      <h2>weather</h2>
+      {weather && (
+        <>
+          <h3>Longitude: {latitude} </h3>
+          <h3>Latitude: {longitude} </h3>
+          <h3>Coordinate Region: {weather.name} </h3>
+          <h3>Temperature: {Math.ceil(weather.main.temp-273.15)} </h3>
+          <h3>Status: {weather.weather.map(data=>data.main)} </h3>
+          <h3>Feature: {weather.weather.map(data=>data.description)} </h3>
+        </>
+      )}
     </div>
   );
 }
-
-
-
 
 export default App;
