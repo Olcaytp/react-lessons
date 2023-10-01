@@ -234,56 +234,129 @@ import './App.css';
 
 //-------------------------------------------------------------lesson 17
 //npm use-position is used for taking browsers longitude and latitude
+//while starting the app for the first time comment the temperature, status and feature lines
+//because the data is not fetched yet and it will give error
 
-import React, {useState, useEffect} from 'react'
-import axios from 'axios';
-import { usePosition } from 'use-position';
+// import React, {useState, useEffect} from 'react'
+// import axios from 'axios';
+// import { usePosition } from 'use-position';
 
+
+// function App() {
+
+//   const[weather, setWeather] = useState([]);
+//   const { latitude, longitude } = usePosition();
+//   // console.log(latitude, longitude);
+
+//   const getWeatherData = async (lat, lon) => {
+//     const key = process.env.REACT_APP_WEATHER_DATA;
+//     // console.log(key);
+//     const lang = navigator.language.split('-')[0];
+//     // console.log(lang);
+
+//     try{
+//       // const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&lang=${lang}`);
+//       const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`);
+//       console.log(data);
+//       setWeather(data);
+//     }
+//     catch(error){
+//       console.log(error);
+//       alert('Something went wrong');
+//     }
+//   }
+
+
+//   useEffect(() => {
+//     latitude && longitude && getWeatherData(latitude, longitude);
+//   },[latitude, longitude])
+
+//   return (
+//     <div className='App' style={{color:'yellowgreen', backgroundColor:'teal'}} >
+//       <h2>weather</h2>
+//       {weather && (
+//         <>
+//           <h3>Longitude: {latitude} </h3>
+//           <h3>Latitude: {longitude} </h3>
+//           <h3>Coordinate Region: {weather.name} </h3>
+//           <h3>Temperature: {Math.ceil(weather.main.temp-273.15)} </h3>
+//           <h3>Status: {weather.weather.map(data=>data.main)} </h3>
+//           <h3>Feature: {weather.weather.map(data=>data.description)} </h3>
+//         </>
+//       )}
+//     </div>
+//   );
+// }
+
+//-------------------------------------------------------------lesson 18
+//react Routing and we need to install react-router-dom
+
+import React from 'react'
+import './App.css';
+import logo from './img/logo192.png'
+import About from './components/About';
+import Products from './components/Products';
+import Contact from './components/Contact';
+import Home from './components/Home';
+import { BrowserRouter as Route, Link, useParams, Routes } from 'react-router-dom';
 
 function App() {
-
-  const[weather, setWeather] = useState([]);
-  const { latitude, longitude } = usePosition();
-  // console.log(latitude, longitude);
-
-  const getWeatherData = async (lat, lon) => {
-    const key = process.env.REACT_APP_WEATHER_DATA;
-    // console.log(key);
-    const lang = navigator.language.split('-')[0];
-    // console.log(lang);
-
-    try{
-      // const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&lang=${lang}`);
-      const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`);
-      console.log(data);
-      setWeather(data);
-    }
-    catch(error){
-      console.log(error);
-      alert('Something went wrong');
-    }
-  }
-
-
-  useEffect(() => {
-    latitude && longitude && getWeatherData(latitude, longitude);
-  },[latitude, longitude])
-
   return (
-    <div className='App' style={{color:'yellowgreen', backgroundColor:'teal'}} >
-      <h2>weather</h2>
-      {weather && (
-        <>
-          <h3>Longitude: {latitude} </h3>
-          <h3>Latitude: {longitude} </h3>
-          <h3>Coordinate Region: {weather.name} </h3>
-          <h3>Temperature: {Math.ceil(weather.main.temp-273.15)} </h3>
-          <h3>Status: {weather.weather.map(data=>data.main)} </h3>
-          <h3>Feature: {weather.weather.map(data=>data.description)} </h3>
-        </>
-      )}
+    <div className='App'>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <a className="navbar-brand" href="#">
+          <img src={logo} width="30" height="30" alt="logo" loading="lazy" />
+        </a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+              <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span> </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">About</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/products">Products</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/contact">Contact</Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div className="container">
+        <div className="row">
+        <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/about" element={<About/>}/>
+            <Route path="/products" element={<Products/>}/>
+            <Route path="/contact" element={<Contact/>}/>
+          </Routes>
+        <div className="col-md-8 mx-auto mt-4">
+          <div className="alert alert-warning" role='alert'>
+            <Routes>
+              <Route path='/:id' element={<Child/>}></Route>
+            </Routes>
+          </div>
+        </div>
+        </div>
+      </div>
     </div>
-  );
+  )
+}
+
+function Child(){
+  let {id} = useParams();
+  return(
+    <div>
+      <p>ID: {id}</p>
+    </div>
+  )
 }
 
 export default App;
